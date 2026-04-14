@@ -46,7 +46,7 @@ if uploaded_files:
     all_dfs = [pd.read_excel(f) for f in uploaded_files]
 
     if view_mode == "Baseline: Unstandardized":
-        st.subheader("❌ Current State: Fragmented Data Silos")
+        st.subheader("🗄️ Current State: Fragmented Data Silos")
         raw_db = pd.concat(all_dfs, axis=0, ignore_index=True)
         st.dataframe(raw_db)
         st.error("Analysis blocked: Duplicate attributes and inconsistent naming identified.")
