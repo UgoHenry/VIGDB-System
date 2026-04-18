@@ -1,89 +1,259 @@
-import streamlit as st
+import json
 import pandas as pd
+import streamlit as st
 
-st.set_page_config(page_title="VIGDB Management Console", layout="wide")
+# ---------------------------------------------------------
+# LOAD JSON FILES
+# ---------------------------------------------------------
+@st.cache_data
+def load_dictionary(path: str = "dictionary.json") -> pd.DataFrame:
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return pd.DataFrame(data)
 
-# --- 1. DATA DICTIONARY (Mapping Column Headers) ---
-DATA_DICTIONARY = {
-    # Weight mappings
-    'Svars (kg)': 'VAR_WEIGHT', 'Weight': 'VAR_WEIGHT', 'BodyMass_kg': 'VAR_WEIGHT',
-    # Smoking mappings
-    'Smēķēšanas vēsture': 'VAR_SMOKE', 'Tobacco_Usage': 'VAR_SMOKE', 'Do you smoke?': 'VAR_SMOKE',
-    # Diabetes mappings
-    'Cukura diabēts': 'VAR_DIAB', 'Diabetes_History': 'VAR_DIAB', 'Has_Diabetes': 'VAR_DIAB'
-}
+@st.cache_data
+def load_bmc_categories(path: str = "bmc_categories.json") -> pd.DataFrame:
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return pd.DataFrame(data)
 
-# --- 2. VALUE NORMALIZATION (Translating internal data to Codes) ---
-# This ensures "Jā", "Yes", and "Current" all become the same standardized value.
-VALUE_MAP = {
-    # Smoking: 0=Never, 1=Current, 2=Former
-    'Nekad nav smēķējis': '0 (Never)', 'Never': '0 (Never)', 'No': '0 (Never)',
-    'Smēķē pašlaik': '1 (Current)', 'Current': '1 (Current)', 'Yes': '1 (Current)',
-    'Bijušais smēķētājs': '2 (Former)', 'Former': '2 (Former)', 'Past smoker': '2 (Former)',
+@st.cache_data
+def load_ukb_mapping(path: str = "ukb_mapping.json") -> pd.DataFrame:
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return pd.DataFrame(data)
 
-    # Diabetes: 0=No, 1=Yes/Type2
-    'Nē': '0 (No)', 'None': '0 (No)',
-    'Jā': '1 (Yes)', 'Type 2': '1 (Yes)', 'Type 1': '1 (Yes)'
-}
 
-# --- 3. CATALOGUE HIERARCHY (Metadata for the Table) ---
-CATALOGUE = {
-    'VAR_WEIGHT': {'L0': 'Physical Measurement', 'L2': 'Anthropometry', 'Unit': 'kg'},
-    'VAR_SMOKE': {'L0': 'Health and Hereditary', 'L2': 'Lifestyle', 'Unit': 'Code'},
-    'VAR_DIAB': {'L0': 'Health and Hereditary', 'L2': 'Participant Health History', 'Unit': 'Code'}
-}
+# ---------------------------------------------------------
+# PARSE QUESTIONNAIRE JSON
+# ---------------------------------------------------------
+def flatten_questionnaire(file_bytes: bytes, filename: str) -> pd.DataFrame:
+    obj = json.loads(file_bytes.decode("utf-8"))
+    questions = obj.get("questions", [])
 
-# --- USER INTERFACE ---
-st.title("🧬 VIGDB Master Management Console")
-st.sidebar.header("Presentation Controls")
+    rows = []
+    for q in questions:
+        rows.append({
+            "filename": filename,
+            "form_id": obj.get("form_id"),
+            "form_machine_id": obj.get("form_machine_id"),
+            "language": obj.get("language"),
+            "question_number": q.get("question_number"),
+            "question_id_human": q.get("question_id_human"),
+            "question_id_machine": q.get("question_id_machine"),
+            "section": q.get("section"),
+            "subsection": q.get("subsection"),
+            "question_text": q.get("text"),
+            "answer_raw": q.get("answer_raw")
+        })
+    return pd.DataFrame(rows)
 
-view_mode = st.sidebar.radio("Select Database Mode:", ["Baseline: Unstandardized", "Target: Standardized Framework"])
 
-st.markdown("### 📥 Ingestion Layer")
-uploaded_files = st.file_uploader("Upload Questionnaire Sources", type="xlsx", accept_multiple_files=True)
+# ---------------------------------------------------------
+# MERGE PIPELINE
+# ---------------------------------------------------------
+def build_merged_tables(q_df, dict_df, bmc_df, ukb_df):
+    # questionnaire → dictionary
+    merged = q_df.merge(
+        dict_df,
+        on="question_id_machine",
+        how="left",
+        validate="m:1"
+    )
 
-if uploaded_files:
-    all_dfs = [pd.read_excel(f) for f in uploaded_files]
+    # dictionary → BMC
+    merged = merged.merge(
+        bmc_df,
+        on="harmonized_variable",
+        how="left",
+        validate="m:1"
+    )
 
-    if view_mode == "Baseline: Unstandardized":
-        st.subheader("🗄️ Current State: Fragmented Data Silos")
-        raw_db = pd.concat(all_dfs, axis=0, ignore_index=True)
-        st.dataframe(raw_db)
-        st.error("Analysis blocked: Duplicate attributes and inconsistent naming identified.")
+    # dictionary → UKB
+    merged = merged.merge(
+        ukb_df,
+        on="harmonized_variable",
+        how="left",
+        suffixes=("", "_ukb"),
+        validate="m:1"
+    )
 
+    # ⭐ FIX: create improved classification path
+    merged["improved_classification_path"] = (
+        merged["level_0"].fillna("") + " > " +
+        merged["level_1"].fillna("")
+    )
+
+    return merged
+
+
+
+# ---------------------------------------------------------
+# STREAMLIT UI
+# ---------------------------------------------------------
+def main():
+    st.set_page_config(page_title="VIGDB Harmonization Console", layout="wide")
+
+    st.title("VIGDB Harmonization Console")
+    st.caption("BMC Latvia • UK Biobank • Improved BMC")
+
+    uploaded_files = st.sidebar.file_uploader(
+        "Upload questionnaire JSON files",
+        type=["json"],
+        accept_multiple_files=True
+    )
+
+    if not uploaded_files:
+        st.info("Upload one or more questionnaire JSON files to begin.")
+        return
+
+    # Parse all uploaded questionnaires
+    q_frames = []
+    for f in uploaded_files:
+        try:
+            df = flatten_questionnaire(f.read(), f.name)
+            q_frames.append(df)
+        except Exception as e:
+            st.error(f"Could not parse {f.name}: {e}")
+
+    if not q_frames:
+        st.error("No valid questionnaire files found.")
+        return
+
+    q_df = pd.concat(q_frames, ignore_index=True)
+
+    # Load reference tables
+    dict_df = load_dictionary()
+    bmc_df = load_bmc_categories()
+    ukb_df = load_ukb_mapping()
+
+    merged = build_merged_tables(q_df, dict_df, bmc_df, ukb_df)
+
+    # Sidebar file selector
+    file_choice = st.sidebar.selectbox(
+        "Select a file to view",
+        options=["All files"] + sorted(merged["filename"].unique())
+    )
+
+    if file_choice != "All files":
+        view_df = merged[merged["filename"] == file_choice].copy()
     else:
-        st.subheader("✅ Target State: Harmonized VIGDB Database")
+        view_df = merged.copy()
 
-        standardized_list = []
-        for f in uploaded_files:
-            df = pd.read_excel(f)
+    # ---------------------------------------------------------
+    # TABS
+    # ---------------------------------------------------------
+    tab_bmc, tab_ukb, tab_improved = st.tabs([
+        "BMC Classification",
+        "UK Biobank Classification",
+        "Improved BMC Classification"
+    ])
 
-            # Identify ID column automatically
-            id_col = next((c for c in df.columns if c in ['Patient_ID', 'ID', 'Subject', 'Subject_Code']), "Unknown")
+    # ---------------------------------------------------------
+    # BMC TAB
+    # ---------------------------------------------------------
+    with tab_bmc:
+        st.subheader("BMC Classification")
 
-            for index, row in df.iterrows():
-                p_id = row.get(id_col)
+        cols = [
+            "filename",
+            "question_text",
+            "question_id_human",
+            "question_id_machine",
+            "harmonized_variable",
+            "label_lv",
+            "label_en",
+            "level_0_id",
+            "level_0",
+            "level_1_id",
+            "level_1",
+            "level_2_id",
+            "level_2",
+            "level_isleaf_id",
+            "level_isleaf"
+        ]
 
-                for col_name in df.columns:
-                    if col_name in DATA_DICTIONARY:
-                        var_id = DATA_DICTIONARY[col_name]
-                        metadata = CATALOGUE[var_id]
+        # Sort ONLY by filename (safe for all forms)
+        bmc_view = view_df[cols].sort_values(
+            ["filename"],
+            na_position="last"
+        )
 
-                        # Apply Value Normalization
-                        raw_value = row[col_name]
-                        standard_value = VALUE_MAP.get(raw_value, raw_value)
+        st.dataframe(bmc_view, use_container_width=True)
 
-                        standardized_list.append({
-                            "Participant_ID": p_id,
-                            "Variable_ID": var_id,
-                            "Harmonized_Value": standard_value,
-                            "Original_Input": raw_value,
-                            "Unit": metadata['Unit'],
-                            "L0_Group": metadata['L0'],
-                            "L2_Theme": metadata['L2'],
-                            "Source": f.name
-                        })
+        st.download_button(
+            "Download BMC CSV",
+            bmc_view.to_csv(index=False).encode("utf-8"),
+            file_name="bmc_classification.csv"
+        )
 
-        final_df = pd.DataFrame(standardized_list)
-        st.table(final_df)
-        st.success("Harmonization Complete: Data is now compliant with International Biobank standards.")
+    # ---------------------------------------------------------
+    # UKB TAB
+    # ---------------------------------------------------------
+    with tab_ukb:
+        st.subheader("UK Biobank Classification")
+
+        cols = [
+            "filename",
+            "question_text",
+            "question_id_machine",
+            "harmonized_variable",
+            "label_lv",
+            "label_en",
+            "ukb_category_id",
+            "ukb_category_name",
+            "ukb_subcategory",
+            "ukb_field_group",
+            "ukb_field_id",
+            "ukb_field_name",
+            "ukb_field_description",
+            "ukb_field_url"
+        ]
+
+        ukb_view = view_df[cols].sort_values(
+            ["filename"],
+            na_position="last"
+        )
+
+        st.dataframe(ukb_view, use_container_width=True)
+
+        st.download_button(
+            "Download UKB CSV",
+            ukb_view.to_csv(index=False).encode("utf-8"),
+            file_name="ukb_mapping.csv"
+        )
+
+    # ---------------------------------------------------------
+    # IMPROVED BMC TAB
+    # ---------------------------------------------------------
+    with tab_improved:
+        st.subheader("Improved BMC Classification")
+
+        cols = [
+            "harmonized_variable",
+            "label_lv",
+            "label_en",
+            "level_0",
+            "level_1",
+            "level_2",
+            "level_isleaf",
+            "improved_classification_path"
+        ]
+
+        improved_view = (
+            view_df[cols]
+            .drop_duplicates(subset=["harmonized_variable"])
+            .sort_values("harmonized_variable")
+        )
+
+        st.dataframe(improved_view, use_container_width=True)
+
+        st.download_button(
+            "Download Improved BMC CSV",
+            improved_view.to_csv(index=False).encode("utf-8"),
+            file_name="improved_bmc_classification.csv"
+        )
+
+
+if __name__ == "__main__":
+    main()
