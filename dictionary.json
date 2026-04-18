@@ -1,0 +1,517 @@
+[
+  {
+    "question_id_machine": "FormALV_q_0001",
+    "harmonized_variable": "sex",
+    "label_lv": "Kāds ir Jūsu dzimums?",
+    "label_en": "Sex"
+  },
+  {
+    "question_id_machine": "FormALV_q_0002",
+    "harmonized_variable": "year_of_birth",
+    "label_lv": "Dzimšanas gads",
+    "label_en": "Year of birth"
+  },
+  {
+    "question_id_machine": "FormALV_q_0003",
+    "harmonized_variable": "place_of_birth",
+    "label_lv": "Dzimšanas vieta",
+    "label_en": "Place of birth"
+  },
+  {
+    "question_id_machine": "FormALV_q_0004",
+    "harmonized_variable": "smoking_status",
+    "label_lv": "Smēķēšanas statuss",
+    "label_en": "Smoking status"
+  },
+  {
+    "question_id_machine": "FormALV_q_0005",
+    "harmonized_variable": "alcohol_frequency",
+    "label_lv": "Alkohola lietošanas biežums",
+    "label_en": "Alcohol consumption frequency"
+  },
+  {
+    "question_id_machine": "FormALV_q_0006",
+    "harmonized_variable": "physical_activity",
+    "label_lv": "Fiziskās aktivitātes",
+    "label_en": "Physical activity level"
+  },
+  {
+    "question_id_machine": "FormALV_q_0007",
+    "harmonized_variable": "medication_use_3_months",
+    "label_lv": "Medikamentu lietošana pēdējos 3 mēnešos",
+    "label_en": "Medication use in past 3 months"
+  },
+  {
+    "question_id_machine": "FormALV_q_0008",
+    "harmonized_variable": "chronic_diseases",
+    "label_lv": "Hroniskas slimības",
+    "label_en": "Chronic diseases"
+  },
+  {
+    "question_id_machine": "FormALV_q_0009",
+    "harmonized_variable": "height_cm",
+    "label_lv": "Augums (cm)",
+    "label_en": "Height (cm)"
+  },
+  {
+    "question_id_machine": "FormALV_q_0010",
+    "harmonized_variable": "weight_kg",
+    "label_lv": "Svars (kg)",
+    "label_en": "Weight (kg)"
+  },
+  {
+    "question_id_machine": "FormALV_q_0011",
+    "harmonized_variable": "waist_cm",
+    "label_lv": "Vidukļa apkārtmērs (cm)",
+    "label_en": "Waist circumference (cm)"
+  },
+
+  {
+    "question_id_machine": "FormAEN_q_0001",
+    "harmonized_variable": "sex",
+    "label_lv": "Kāds ir Jūsu dzimums?",
+    "label_en": "Sex"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0002",
+    "harmonized_variable": "year_of_birth",
+    "label_lv": "Dzimšanas gads",
+    "label_en": "Year of birth"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0003",
+    "harmonized_variable": "place_of_birth",
+    "label_lv": "Dzimšanas vieta",
+    "label_en": "Place of birth"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0004",
+    "harmonized_variable": "smoking_status",
+    "label_lv": "Smēķēšanas statuss",
+    "label_en": "Smoking status"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0005",
+    "harmonized_variable": "alcohol_frequency",
+    "label_lv": "Alkohola lietošanas biežums",
+    "label_en": "Alcohol consumption frequency"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0006",
+    "harmonized_variable": "physical_activity",
+    "label_lv": "Fiziskās aktivitātes",
+    "label_en": "Physical activity level"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0007",
+    "harmonized_variable": "medication_use_3_months",
+    "label_lv": "Medikamentu lietošana pēdējos 3 mēnešos",
+    "label_en": "Medication use in past 3 months"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0008",
+    "harmonized_variable": "chronic_diseases",
+    "label_lv": "Hroniskas slimības",
+    "label_en": "Chronic diseases"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0009",
+    "harmonized_variable": "height_cm",
+    "label_lv": "Augums (cm)",
+    "label_en": "Height (cm)"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0010",
+    "harmonized_variable": "weight_kg",
+    "label_lv": "Svars (kg)",
+    "label_en": "Weight (kg)"
+  },
+  {
+    "question_id_machine": "FormAEN_q_0011",
+    "harmonized_variable": "waist_cm",
+    "label_lv": "Vidukļa apkārtmērs (cm)",
+    "label_en": "Waist circumference (cm)"
+  },
+
+  {
+    "question_id_machine": "FormBLV_q_0001",
+    "harmonized_variable": "digestive_issues_past_year",
+    "label_lv": "Atkārtotas gremošanas problēmas pēdējā gada laikā",
+    "label_en": "Recurring digestive issues in past year"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0002",
+    "harmonized_variable": "digestive_symptoms",
+    "label_lv": "Gremošanas simptomi",
+    "label_en": "Digestive symptoms"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0003",
+    "harmonized_variable": "digestive_disease_history",
+    "label_lv": "Gremošanas trakta slimību vēsture",
+    "label_en": "Digestive disease history"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0004",
+    "harmonized_variable": "digestive_disease_year",
+    "label_lv": "Diagnosticēšanas gads",
+    "label_en": "Year diagnosed"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0005",
+    "harmonized_variable": "digestive_disease_active",
+    "label_lv": "Vai slimība šobrīd ir aktīva?",
+    "label_en": "Is the condition currently active?"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0006",
+    "harmonized_variable": "medications_6_months",
+    "label_lv": "Medikamenti un uztura bagātinātāji pēdējo 6 mēnešu laikā",
+    "label_en": "Medications and supplements in past 6 months"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0007",
+    "harmonized_variable": "antibiotic_name",
+    "label_lv": "Antibiotiku nosaukums",
+    "label_en": "Antibiotic name"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0008",
+    "harmonized_variable": "antibiotic_duration",
+    "label_lv": "Antibiotiku kurss (dienas)",
+    "label_en": "Antibiotic duration (days)"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0009",
+    "harmonized_variable": "post_antibiotic_symptoms",
+    "label_lv": "Gremošanas traucējumi pēc antibiotikām",
+    "label_en": "Digestive symptoms after antibiotics"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0010",
+    "harmonized_variable": "special_diet",
+    "label_lv": "Īpaša diēta",
+    "label_en": "Special diet"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0011",
+    "harmonized_variable": "diet_duration",
+    "label_lv": "Diētas ilgums",
+    "label_en": "Diet duration"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0012",
+    "harmonized_variable": "diet_reason",
+    "label_lv": "Diētas iemesls",
+    "label_en": "Reason for diet"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0013",
+    "harmonized_variable": "stress_level",
+    "label_lv": "Stresa līmenis",
+    "label_en": "Daily stress level"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0014",
+    "harmonized_variable": "sleep_duration",
+    "label_lv": "Miega ilgums",
+    "label_en": "Sleep duration"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0015",
+    "harmonized_variable": "height_cm",
+    "label_lv": "Augums (cm)",
+    "label_en": "Height (cm)"
+  },
+  {
+    "question_id_machine": "FormBLV_q_0016",
+    "harmonized_variable": "weight_kg",
+    "label_lv": "Svars (kg)",
+    "label_en": "Weight (kg)"
+  },
+
+  {
+    "question_id_machine": "FormBEN_q_0001",
+    "harmonized_variable": "digestive_issues_past_year",
+    "label_lv": "Atkārtotas gremošanas problēmas pēdējā gada laikā",
+    "label_en": "Recurring digestive issues in past year"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0002",
+    "harmonized_variable": "digestive_symptoms",
+    "label_lv": "Gremošanas simptomi",
+    "label_en": "Digestive symptoms"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0003",
+    "harmonized_variable": "digestive_disease_history",
+    "label_lv": "Gremošanas trakta slimību vēsture",
+    "label_en": "Digestive disease history"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0004",
+    "harmonized_variable": "digestive_disease_year",
+    "label_lv": "Diagnosticēšanas gads",
+    "label_en": "Year diagnosed"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0005",
+    "harmonized_variable": "digestive_disease_active",
+    "label_lv": "Vai slimība šobrīd ir aktīva?",
+    "label_en": "Is the condition currently active?"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0006",
+    "harmonized_variable": "medications_6_months",
+    "label_lv": "Medikamenti un uztura bagātinātāji pēdējo 6 mēnešu laikā",
+    "label_en": "Medications and supplements in past 6 months"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0007",
+    "harmonized_variable": "antibiotic_name",
+    "label_lv": "Antibiotiku nosaukums",
+    "label_en": "Antibiotic name"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0008",
+    "harmonized_variable": "antibiotic_duration",
+    "label_lv": "Antibiotiku kurss (dienas)",
+    "label_en": "Antibiotic duration (days)"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0009",
+    "harmonized_variable": "post_antibiotic_symptoms",
+    "label_lv": "Gremošanas traucējumi pēc antibiotikām",
+    "label_en": "Digestive symptoms after antibiotics"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0010",
+    "harmonized_variable": "special_diet",
+    "label_lv": "Īpaša diēta",
+    "label_en": "Special diet"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0011",
+    "harmonized_variable": "diet_duration",
+    "label_lv": "Diētas ilgums",
+    "label_en": "Diet duration"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0012",
+    "harmonized_variable": "diet_reason",
+    "label_lv": "Diētas iemesls",
+    "label_en": "Reason for diet"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0013",
+    "harmonized_variable": "stress_level",
+    "label_lv": "Stresa līmenis",
+    "label_en": "Daily stress level"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0014",
+    "harmonized_variable": "sleep_duration",
+    "label_lv": "Miega ilgums",
+    "label_en": "Sleep duration"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0015",
+    "harmonized_variable": "height_cm",
+    "label_lv": "Augums (cm)",
+    "label_en": "Height (cm)"
+  },
+  {
+    "question_id_machine": "FormBEN_q_0016",
+    "harmonized_variable": "weight_kg",
+    "label_lv": "Svars (kg)",
+    "label_en": "Weight (kg)"
+  },
+
+  {
+    "question_id_machine": "MikrobiomaLV_q_0001",
+    "harmonized_variable": "antibiotics_2_months",
+    "label_lv": "Antibiotikas pēdējo 2 mēnešu laikā",
+    "label_en": "Antibiotics in last 2 months"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0002",
+    "harmonized_variable": "antibiotic_details_2m",
+    "label_lv": "Antibiotiku detaļas (2 mēneši)",
+    "label_en": "Antibiotic details (2 months)"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0003",
+    "harmonized_variable": "medications_2_months",
+    "label_lv": "Medikamenti pēdējo 2 mēnešu laikā",
+    "label_en": "Medications in last 2 months"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0004",
+    "harmonized_variable": "diarrhea_week",
+    "label_lv": "Caureja pēdējās nedēļas laikā",
+    "label_en": "Diarrhea in last week"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0005",
+    "harmonized_variable": "birth_mode",
+    "label_lv": "Dzimšanas veids",
+    "label_en": "Mode of birth"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0006",
+    "harmonized_variable": "breastfeeding",
+    "label_lv": "Krūts barošana",
+    "label_en": "Breastfeeding"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0007",
+    "harmonized_variable": "autoimmune_disease",
+    "label_lv": "Autoimūnas slimības",
+    "label_en": "Autoimmune diseases"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0008",
+    "harmonized_variable": "autoimmune_disease_list",
+    "label_lv": "Autoimūno slimību saraksts",
+    "label_en": "List of autoimmune diseases"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0009",
+    "harmonized_variable": "digestive_disease",
+    "label_lv": "Gremošanas trakta slimības",
+    "label_en": "Digestive tract diseases"
+  },
+  {
+    "question_id_machine": "MikrobiomaLV_q_0010",
+    "harmonized_variable": "digestive_disease_list",
+    "label_lv": "Gremošanas trakta slimību saraksts",
+    "label_en": "List of digestive tract diseases"
+  },
+
+  {
+    "question_id_machine": "VIGDBLV_q_0001",
+    "harmonized_variable": "sex",
+    "label_lv": "Kāds ir jūsu dzimums?",
+    "label_en": "Sex"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0002",
+    "harmonized_variable": "year_of_birth",
+    "label_lv": "Jūsu dzimšanas gads un vecums",
+    "label_en": "Year of birth and age"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0003",
+    "harmonized_variable": "place_of_birth",
+    "label_lv": "Kur Jūs esat dzimis?",
+    "label_en": "Place of birth"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0004",
+    "harmonized_variable": "ethnicity",
+    "label_lv": "Tautība",
+    "label_en": "Ethnicity / nationality"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0005",
+    "harmonized_variable": "living_conditions",
+    "label_lv": "Dzīves apstākļi",
+    "label_en": "Living conditions"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0006",
+    "harmonized_variable": "children",
+    "label_lv": "Bērni",
+    "label_en": "Children"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0007",
+    "harmonized_variable": "education_level",
+    "label_lv": "Izglītība",
+    "label_en": "Education level"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0008",
+    "harmonized_variable": "medication_current",
+    "label_lv": "Vai Jūs pašlaik lietojat medikamentus?",
+    "label_en": "Are you currently using medications?"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0009",
+    "harmonized_variable": "smoking_current",
+    "label_lv": "Vai Jūs šobrīd smēķējat?",
+    "label_en": "Do you currently smoke?"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0010",
+    "harmonized_variable": "smoking_former",
+    "label_lv": "Vai Jūs dzīves laikā jebkad esat smēķējis un šobrīd atmetis?",
+    "label_en": "Former smoking"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0011",
+    "harmonized_variable": "passive_smoking",
+    "label_lv": "Piesmēķētas telpas",
+    "label_en": "Passive smoking exposure"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0012",
+    "harmonized_variable": "alcohol_use",
+    "label_lv": "Vai Jūs lietojat alkoholu?",
+    "label_en": "Do you drink alcohol?"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0013",
+    "harmonized_variable": "alcohol_amount",
+    "label_lv": "Cik daudz vidēji vienā reizē lietojat alkoholu?",
+    "label_en": "Alcohol amount per occasion"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0014",
+    "harmonized_variable": "lifestyle_past_current",
+    "label_lv": "Kāds ir Jūsu dzīvesveids šobrīd un agrāk?",
+    "label_en": "Lifestyle past and current"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0015",
+    "harmonized_variable": "cancer_history",
+    "label_lv": "Vai Jūs esat slimojis ar ļaundabīgiem audzējiem?",
+    "label_en": "History of malignant tumours"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0016",
+    "harmonized_variable": "cvd_history",
+    "label_lv": "Vai Jūs esat slimojis ar sirds un asinsvadu sistēmas slimībām?",
+    "label_en": "History of cardiovascular diseases"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0017",
+    "harmonized_variable": "endocrine_history",
+    "label_lv": "Vai Jūs esat slimojis ar vielmaiņas un endokrīnām slimībām?",
+    "label_en": "History of endocrine diseases"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0018",
+    "harmonized_variable": "other_chronic_history",
+    "label_lv": "Citas hroniskas slimības",
+    "label_en": "Other chronic diseases"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0019",
+    "harmonized_variable": "height_cm",
+    "label_lv": "Augums (cm)",
+    "label_en": "Height (cm)"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0020",
+    "harmonized_variable": "weight_kg",
+    "label_lv": "Svars (kg)",
+    "label_en": "Weight (kg)"
+  },
+  {
+    "question_id_machine": "VIGDBLV_q_0021",
+    "harmonized_variable": "waist_cm",
+    "label_lv": "Vēdera apkārtmērs (cm)",
+    "label_en": "Waist circumference (cm)"
+  }
+]
